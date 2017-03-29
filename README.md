@@ -1,0 +1,1 @@
+## js 简单实现lazyMan
