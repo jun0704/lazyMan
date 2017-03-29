@@ -70,7 +70,26 @@
 		function LazyMan(name){
 			return new _LazyMan(name)
 		}
-		LazyMan('Hank').eat("apple").sleep(5).sleepFirst(5)
+		// LazyMan('Hank').eat("apple").sleep(5).sleepFirst(5)
+
+		function add() {
+			console.log(arguments)
+			var args = Array.prototype.slice.call(arguments);
+			// console.log(args)
+			var fn = function(){
+				var args_fn = Array.prototype.slice.call(arguments);
+				return add.apply(null, args.concat(args_fn))
+			}
+
+			fn.valueOf = function(){
+				return args.reduce(function(a,b) {
+					return a + b;
+				})
+			}
+
+			return fn;
+		}
+		console.log(add(1,2)(2))
 	</script>
 </body>
 </html>
